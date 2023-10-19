@@ -1,1 +1,1 @@
-# OCR_WEB
+Java调API实现文字识别的WEB项目
