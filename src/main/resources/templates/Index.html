@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR Studio</title>
+    <!-- 引入ElementUI样式 -->
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui/lib/theme-chalk/index.css">
+
+    <style>
+        body{
+            background-color: #F6F6F6;
+        }
+
+        body .PTW{
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class = "PTW">
+        <h1>Hello, AI!</h1>
+        <h3>图片文字提取</h3>
+        <!--上传按钮-->
+        <!--执行操作：后端函数接口-->
+        <el-upload
+                class="upload-demo"
+                action="/pic"
+                :on-success="DealSuccess" >
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传图片，且不超过500kb</div>
+        </el-upload>
+
+        <el-input
+                type="textarea"
+                :rows="5"
+                placeholder="等待转换...."
+                v-model="words">
+        </el-input>
+    </div>
+</body>
+
+<!--引入JS-->
+<!-- import Vue before Element -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<!-- import JavaScript -->
+<script src="https://unpkg.zhimg.com/element-ui/lib/index.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.2/axios.min.js"></script>
+
+<!--新建Vue对象-->
+<script>
+    new Vue({
+        // 绑定样式
+        el:'#app',
+        // 存放数据
+        data:{
+            words:""
+        },
+        // 方法
+        methods:{
+            DealSuccess(res){
+                // 处理成功时需要执行的函数,在前端控制台中打印文件内容
+                console.log(res);
+                // console.log(file);
+                //res是从后端返回过来的
+                this.words = res;
+            },
+        }
+    })
+</script>
+
+</html>
